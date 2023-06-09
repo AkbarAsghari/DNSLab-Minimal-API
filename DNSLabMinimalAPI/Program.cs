@@ -8,8 +8,6 @@ namespace DNSLabMinimalAPI
 
             var app = builder.Build();
 
-            app.UseHttpsRedirection();
-
             app.MapGet("", (HttpContext httpContext) =>
             {
                return httpContext.Connection.RemoteIpAddress!.ToString();
