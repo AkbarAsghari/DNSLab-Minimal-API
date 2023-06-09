@@ -44,8 +44,7 @@ namespace DNSLabMinimalAPI
         {
             string ip = context.Connection.RemoteIpAddress!.ToString();
 
-            if (context.Connection.RemoteIpAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork ||
-                context.Connection.RemoteIpAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6)
+            if (context.Connection.RemoteIpAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6)
                 ip = "127.0.0.1";
 
             return ip;
