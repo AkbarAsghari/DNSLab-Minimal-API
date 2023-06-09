@@ -84,7 +84,9 @@ namespace DNSLabMinimalAPI
         public static bool IsBrowser(this HttpContext context)
         {
             return Regex.IsMatch(context.Request.Headers.UserAgent, @"Edge\/\d+") ||
-                Regex.IsMatch(context.Request.Headers.UserAgent, @"Chrome\/\d+");
+                Regex.IsMatch(context.Request.Headers.UserAgent, @"Chrome\/\d+") ||
+                Regex.IsMatch(context.Request.Headers.UserAgent, @"FireFox\/\d+") ||
+                Regex.IsMatch(context.Request.Headers.UserAgent, @"Safari\/\d+");
         }
     }
 }
