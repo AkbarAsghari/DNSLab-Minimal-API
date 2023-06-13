@@ -31,7 +31,7 @@ namespace DNSLabMinimalAPI
 
             app.MapGet("/json", (HttpContext httpContext) =>
             {
-                httpContext.GetPublicIPJson();
+               return httpContext.GetPublicIPJson();
             });
 
             app.Run();
