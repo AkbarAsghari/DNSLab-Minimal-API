@@ -23,7 +23,6 @@ namespace DNSLabMinimalAPI
                 {
                     httpContext.Response.ContentType = "text/html";
                     httpContext.Response.Headers.Add("Server", "dnslab.link");
-
                     return httpContext.GetPublicIPBrowser();
                 }
                 else
@@ -56,6 +55,7 @@ namespace DNSLabMinimalAPI
         public static string GetPublicIPBrowser(this HttpContext context)
         {
             return 
+                $"<title>Public IP Address</title>" +
                 $"<div style='font-family: monospace;'>" +
                 $"  <h1>IP.DNSLab.link - what is my IP address? </h1>" +
                 $"  <p>IP Address : {context.GetPublicIP()}</p>" +
