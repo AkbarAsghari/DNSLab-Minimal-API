@@ -22,6 +22,8 @@ namespace DNSLabMinimalAPI
                 if (httpContext.IsBrowser())
                 {
                     httpContext.Response.ContentType = "text/html";
+                    httpContext.Response.Headers.Add("Server", "dnslab.link");
+
                     return httpContext.GetPublicIPBrowser();
                 }
                 else
