@@ -21,6 +21,7 @@ namespace DNSLabMinimalAPI
             {
                 if (httpContext.IsBrowser())
                 {
+                    httpContext.Response.ContentType = "text/html";
                     return httpContext.GetPublicIPBrowser();
                 }
                 else
@@ -52,16 +53,20 @@ namespace DNSLabMinimalAPI
 
         public static string GetPublicIPBrowser(this HttpContext context)
         {
-            return $"Your public ip is [ {context.GetPublicIP()} ] \r\r" +
-                $"---------------Json-------------- \r\r" +
-                $"url : ip.dnslab.link/json\r\r" +
-                $"result\r\r" +
-                $"{context.GetPublicIPJson()}\r\r" +
-                $"---------------Hex---------------  \r\r" +
-                $"url : ip.dnslab.link/hex\r\r" +
-                $"result [ {context.GetPublicIPHex()} ]\r\r" +
-                $"---------------About-------------  \r\r" +
-                $"Made with ❤️ by DNSLab.link";
+            return 
+                $"<div style='font-family: monospace;'>" +
+                $"  <h1>IP.DNSLab.link - what is my IP address? </h1>" +
+                $"  <p>IP Address : {context.GetPublicIP()}</p>" +
+                $"  <h2>Simple cURL API</h2>" +
+                $"  <hr>" +
+                $"  <p>$curl ip.dnslab.link ----> {context.GetPublicIP()}" +
+                $"  <p>$curl ip.dnslab.link/hex ----> {context.GetPublicIPHex()}" +
+                $"  <p>$curl ip.dnslab.link/json ----> {context.GetPublicIPJson()}" +
+                $"  <h3>About</h3>" +
+                $"  <hr>" +
+                $"  <p>Made with \t&#10084; by <a href='https://dnslab.link'>DNSLab.link</a></p>" +
+                $"  <p>Repository <a href='https://github.com/AkbarAsghari/DNSLab-Minimal-API'>DNSLab-Minimal-API</a></p>" +
+                $"</div>";
         }
 
         public static string GetPublicIPHex(this HttpContext context)
