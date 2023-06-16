@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.IO.Compression;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
@@ -13,7 +15,15 @@ namespace DNSLabMinimalAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddResponseCompression(options =>
+            {
+                options.EnableForHttps = true;
+                options.Providers.Add<GzipCompressionProvider>();
+            });
+
             var app = builder.Build();
+
+            app.UseResponseCompression();
 
             app.MapGet("/hex", (HttpContext httpContext) => httpContext.GetPublicIPHex());
             app.MapGet("/hex", (HttpContext httpContext) => httpContext.GetPublicIPHex());
