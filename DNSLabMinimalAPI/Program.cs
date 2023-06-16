@@ -26,9 +26,14 @@ namespace DNSLabMinimalAPI
             app.UseResponseCompression();
 
             app.MapGet("/hex", (HttpContext httpContext) => httpContext.GetPublicIPHex());
-            app.MapGet("/hex", (HttpContext httpContext) => httpContext.GetPublicIPHex());
-            app.MapGet("/json", (HttpContext httpContext) => httpContext.GetPublicIPJson());
             app.MapGet("/ip", (HttpContext httpContext) => httpContext.GetPublicIP());
+
+            app.MapGet("/json", (HttpContext httpContext) =>
+            {
+                httpContext.Response.ContentType = "application/json";
+                httpContext.Response.Headers.Add("Server", "dnslab.link");
+                return httpContext.GetPublicIPJson();
+            });
 
             app.MapGet("", (HttpContext httpContext) =>
             {
