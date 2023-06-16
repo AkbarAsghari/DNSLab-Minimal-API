@@ -16,6 +16,9 @@ namespace DNSLabMinimalAPI
             var app = builder.Build();
 
             app.MapGet("/hex", (HttpContext httpContext) => httpContext.GetPublicIPHex());
+            app.MapGet("/hex", (HttpContext httpContext) => httpContext.GetPublicIPHex());
+            app.MapGet("/json", (HttpContext httpContext) => httpContext.GetPublicIPJson());
+            app.MapGet("/ip", (HttpContext httpContext) => httpContext.GetPublicIP());
 
             app.MapGet("", (HttpContext httpContext) =>
             {
@@ -29,11 +32,6 @@ namespace DNSLabMinimalAPI
                 {
                     return httpContext.GetPublicIP();
                 }
-            });
-
-            app.MapGet("/json", (HttpContext httpContext) =>
-            {
-               return httpContext.GetPublicIPJson();
             });
 
             app.Run();
@@ -54,7 +52,7 @@ namespace DNSLabMinimalAPI
 
         public static string GetPublicIPBrowser(this HttpContext context)
         {
-            return 
+            return
                 $"<!DOCTYPE html>" +
                 $"<html lang='en'>" +
                 $"<head>" +
@@ -62,6 +60,7 @@ namespace DNSLabMinimalAPI
                 $"<meta name='viewport' content='width=device-width, initial-scale=1'>" +
                 $"<meta name='description' content='Find out what your public IPv4 address and other tools about IP address'>" +
                 $"<title>Public IP Address</title>" +
+                "<style>th, td {border-style:dotted;border-width:thin;}</style>" +
                 $"</head>" +
                 $"<body style='font-family: monospace;'>" +
                 $"<div>" +
@@ -69,9 +68,13 @@ namespace DNSLabMinimalAPI
                 $"  <p>IP Address : {context.GetPublicIP()}</p>" +
                 $"  <h2>Simple cURL API</h2>" +
                 $"  <hr>" +
-                $"  <p>$curl ip.dnslab.link ----> {context.GetPublicIP()}" +
-                $"  <p>$curl ip.dnslab.link/hex ----> {context.GetPublicIPHex()}" +
-                $"  <p>$curl ip.dnslab.link/json ----> {context.GetPublicIPJson()}" +
+                $"  <table>" +
+                $"  <tr><th>Command</th><th>Result</th></tr>" +
+                $"  <tr><td>$curl ip.dnslab.link</td><td>{context.GetPublicIP()}</td></tr>" +
+                $"  <tr><td>$curl ip.dnslab.link/ip</td><td>{context.GetPublicIP()}</td></tr>" +
+                $"  <tr><td>$curl ip.dnslab.link/hex</td><td>{context.GetPublicIPHex()}</td></tr>" +
+                $"  <tr><td>$curl ip.dnslab.link/json</td><td>{context.GetPublicIPJson()}</td></tr>" +
+                $"  </table>" +
                 $"  <h3>About</h3>" +
                 $"  <hr>" +
                 $"  <p>Made with \t&#10084; by <a href='https://dnslab.link'>DNSLab.link</a></p>" +
