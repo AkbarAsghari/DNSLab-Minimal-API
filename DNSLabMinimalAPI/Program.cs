@@ -75,20 +75,20 @@ namespace DNSLabMinimalAPI
                 $"<meta name='viewport' content='width=device-width, initial-scale=1'>" +
                 $"<meta name='description' content='Find out what your public IPv4 address and other tools about IP address'>" +
                 $"<title>Public IP Address</title>" +
-                "<style>tr:nth-child(even) {background-color:#e2e2e2;}</style>" +
+                "<style>tr:nth-child(even) {background-color:#e2e2e2;} #ip{font-size: x-large;font-weight: bold;}</style>" +
                 $"</head>" +
                 $"<body style='font-family: monospace;'>" +
                 $"<div>" +
                 $"  <h1>IP.DNSLab.link - what is my IP address? </h1>" +
-                $"  <p>IP Address : {context.GetPublicIP()}</p>" +
+                $"  <p id='ip'>IP Address : {context.GetPublicIP()}</p>" +
                 $"  <h2>Simple cURL API</h2>" +
                 $"  <hr>" +
                 $"  <table>" +
-                $"  <tr><th>Command</th><th>Result</th></tr>" +
-                $"  <tr><td>$curl ip.dnslab.link</td><td>{context.GetPublicIP()}</td></tr>" +
-                $"  <tr><td>$curl ip.dnslab.link/ip</td><td>{context.GetPublicIP()}</td></tr>" +
-                $"  <tr><td>$curl ip.dnslab.link/hex</td><td>{context.GetPublicIPHex()}</td></tr>" +
-                $"  <tr><td>$curl ip.dnslab.link/json</td><td>{context.GetPublicIPJson()}</td></tr>" +
+                $"    <tr><th>Command</th><th>Result</th></tr>" +
+                $"    <tr><td>$curl ip.dnslab.link</td><td>{context.GetPublicIP()}</td></tr>" +
+                $"    <tr><td>$curl ip.dnslab.link/ip</td><td>{context.GetPublicIP()}</td></tr>" +
+                $"    <tr><td>$curl ip.dnslab.link/hex</td><td>{context.GetPublicIPHex()}</td></tr>" +
+                $"    <tr><td>$curl ip.dnslab.link/json</td><td>{context.GetPublicIPJson()}</td></tr>" +
                 $"  </table>" +
                 $"  <h3>About</h3>" +
                 $"  <hr>" +
