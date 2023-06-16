@@ -60,7 +60,7 @@ namespace DNSLabMinimalAPI
                 $"<meta name='viewport' content='width=device-width, initial-scale=1'>" +
                 $"<meta name='description' content='Find out what your public IPv4 address and other tools about IP address'>" +
                 $"<title>Public IP Address</title>" +
-                "<style>th, td {border-style:dotted;border-width:thin;}</style>" +
+                "<style>tr:nth-child(even) {background-color:#e2e2e2;}</style>" +
                 $"</head>" +
                 $"<body style='font-family: monospace;'>" +
                 $"<div>" +
