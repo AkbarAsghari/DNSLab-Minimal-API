@@ -55,8 +55,14 @@ namespace DNSLabMinimalAPI
         public static string GetPublicIPBrowser(this HttpContext context)
         {
             return 
+                $"<html lang='en'>" +
+                $"<head>" +
+                $"<meta charset='utf-8'>" +
+                $"<meta name='viewport' content='width=device-width, initial-scale=1'>" +
                 $"<title>Public IP Address</title>" +
-                $"<div style='font-family: monospace;'>" +
+                $"</head>" +
+                $"<body style='font-family: monospace;'>" +
+                $"<div>" +
                 $"  <h1>IP.DNSLab.link - what is my IP address? </h1>" +
                 $"  <p>IP Address : {context.GetPublicIP()}</p>" +
                 $"  <h2>Simple cURL API</h2>" +
@@ -68,7 +74,9 @@ namespace DNSLabMinimalAPI
                 $"  <hr>" +
                 $"  <p>Made with \t&#10084; by <a href='https://dnslab.link'>DNSLab.link</a></p>" +
                 $"  <p>Repository <a href='https://github.com/AkbarAsghari/DNSLab-Minimal-API'>DNSLab-Minimal-API</a></p>" +
-                $"</div>";
+                $"</div>" +
+                $"</body>" +
+                $"</html>";
         }
 
         public static string GetPublicIPHex(this HttpContext context)
